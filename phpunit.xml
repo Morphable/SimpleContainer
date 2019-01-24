@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="SimpleCache tests">
+        <testsuite name="SimpleContainer tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
