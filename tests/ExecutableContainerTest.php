@@ -29,16 +29,12 @@ class ExecutableContainerTest extends TestCase
         $this->assertTrue($classWithRightMethod->checkExecute());
         $events->delete("classWithRightMethod");
 
-        $events->add("nonExecutable", "string");
-
         try {
-            $events->execute();
+            $events->add("nonExecutable", "string");
             $this->assertTrue(false);
         } catch (\Morphable\SimpleContainer\Exception\NonExecutableItem $e) {
             $this->assertTrue(true);
         }
-
-        $events->delete("nonExecutable");
 
         $classWithoutRightMethod = new class {};
 
@@ -49,6 +45,8 @@ class ExecutableContainerTest extends TestCase
         } catch (\Morphable\SimpleContainer\Exception\MissingMethod $e) {
             $this->assertTrue(true);
         }
+
+
 
         $events->delete("classWithoutRightMethod");
     }
