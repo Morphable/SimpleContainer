@@ -8,11 +8,6 @@ use \Morphable\SimpleContainer\Exception\InstanceNotFound;
 class SimpleContainer
 {
     /**
-     * @var bool
-     */
-    protected $isCaseSensitive;
-
-    /**
      * @var array
      */
     protected $instances;
@@ -22,10 +17,9 @@ class SimpleContainer
      * @param bool
      * @return self
      */
-    public function __construct(array $instances = [], bool $isCaseSensitive = true)
+    public function __construct(array $instances = [])
     {
         $this->instances = $instances;
-        $this->isCaseSensitive = $isCaseSensitive;
     }
 
     /**
@@ -34,10 +28,6 @@ class SimpleContainer
      */
     public function get(string $name)
     {
-        if (!$this->isCaseSensitive) {
-            $name = strtolower($name);
-        }
-
         if (!isset($this->instances[$name])) {
             throw new InstanceNotFound("Instance {$name} does not exists");
         }
@@ -51,10 +41,6 @@ class SimpleContainer
      */
     public function exists(string $name)
     {
-        if (!$this->isCaseSensitive) {
-            $name = strtolower($name);
-        }
-
         return (bool) isset($this->instances[$name]);
     }
 
@@ -65,10 +51,6 @@ class SimpleContainer
      */
     public function add(string $name, $instance)
     {
-        if (!$this->isCaseSensitive) {
-            $name = strtolower($name);
-        }
-
         if (isset($this->instances[$name])) {
             throw new InstanceAlreadyExists("Instance {$name} already exists, please use update() instead");
         }
@@ -85,10 +67,6 @@ class SimpleContainer
      */
     public function update(string $name, $instance)
     {
-        if (!$this->isCaseSensitive) {
-            $name = strtolower($name);
-        }
-
         if (!isset($this->instances[$name])) {
             throw new InstanceNotFound("Instance {$name} does not exists");
         }
@@ -104,10 +82,6 @@ class SimpleContainer
      */
     public function delete(string $name)
     {
-        if (!$this->isCaseSensitive) {
-            $name = strtolower($name);
-        }
-
         if (!isset($this->instances[$name])) {
             throw new InstanceNotFound("Instance {$name} does not exists");
         }
