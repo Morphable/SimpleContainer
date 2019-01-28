@@ -10,12 +10,12 @@ class SimpleContainer
     /**
      * @var bool
      */
-    private $isCaseSensitive;
+    protected $isCaseSensitive;
 
     /**
      * @var array
      */
-    private $instances;
+    protected $instances;
 
     /**
      * @param array
