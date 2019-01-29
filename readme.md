@@ -34,6 +34,23 @@ try {
 }
 
 ```
+Executable container
+```php
+<?php
+
+use \Morphable\SimpleContainer\ExecutableContainer;
+
+$container = new ExecutableContainer("required_method");
+
+// needs method required_method
+$class = new MyClass();
+
+$container->add('item', $class);
+
+// executes all items in container
+$container->execute('any','parameter');
+
+```
 
 ## Contributing
 - Follow PSR-2 and the .editorconfig
